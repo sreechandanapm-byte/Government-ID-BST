@@ -1,0 +1,127 @@
+============================================
+   GOVERNMENT IDENTIFICATION DATABASE (BST)
+============================================
+
+Insertion Order:
+A102 A25 A7 B100 B12 A120 B3 A45 
+
+--------------------------------------------
+a) BUILDING THE BST (insertion trace)
+--------------------------------------------
+
+Insert "A102":
+    -> "A102" inserted here (new node)
+  [0 comparisons to place "A102"]
+
+Insert "A25":
+    "A25" > "A102" -> go RIGHT
+    -> "A25" inserted here (new node)
+  [1 comparison to place "A25"]
+
+Insert "A7":
+    "A7" > "A102" -> go RIGHT
+    "A7" > "A25" -> go RIGHT
+    -> "A7" inserted here (new node)
+  [2 comparisons to place "A7"]
+
+Insert "B100":
+    "B100" > "A102" -> go RIGHT
+    "B100" > "A25" -> go RIGHT
+    "B100" > "A7" -> go RIGHT
+    -> "B100" inserted here (new node)
+  [3 comparisons to place "B100"]
+
+Insert "B12":
+    "B12" > "A102" -> go RIGHT
+    "B12" > "A25" -> go RIGHT
+    "B12" > "A7" -> go RIGHT
+    "B12" > "B100" -> go RIGHT
+    -> "B12" inserted here (new node)
+  [4 comparisons to place "B12"]
+
+Insert "A120":
+    "A120" > "A102" -> go RIGHT
+    "A120" < "A25" -> go LEFT
+    -> "A120" inserted here (new node)
+  [2 comparisons to place "A120"]
+
+Insert "B3":
+    "B3" > "A102" -> go RIGHT
+    "B3" > "A25" -> go RIGHT
+    "B3" > "A7" -> go RIGHT
+    "B3" > "B100" -> go RIGHT
+    "B3" > "B12" -> go RIGHT
+    -> "B3" inserted here (new node)
+  [5 comparisons to place "B3"]
+
+Insert "A45":
+    "A45" > "A102" -> go RIGHT
+    "A45" > "A25" -> go RIGHT
+    "A45" < "A7" -> go LEFT
+    -> "A45" inserted here (new node)
+  [3 comparisons to place "A45"]
+
+Inorder Traversal of BST (sorted order):
+A102 A120 A25 A45 A7 B100 B12 B3 
+
+BST Height (levels): 6
+Total nodes: 8   Leaf nodes: 3
+Theoretical best height for n=8 : 4 (ceil(log2(n+1)))
+Theoretical worst height for n=8: 8
+
+Tree Structure (indented view):
+
+ROOT: A102
+    \--R: A25
+        /--L: A120
+        \--R: A7
+            /--L: A45
+            \--R: B100
+                \--R: B12
+                    \--R: B3
+
+Tree Structure (top-down "/  \" view):
+
+A102_____
+         \
+       _A25____
+      /        \
+    A120     _A7__
+            /     \
+           A45  B100_
+                     \
+                    B12_
+                        \
+                       B3
+
+============================================
+b) BST SEARCH vs LINEAR SEARCH COMPARISON
+============================================
+
+ID       Depth   BST-Node   BST-Char   Lin-Node   Lin-Char  
+---------------------------------------------------------------
+A102     1       1          5          1          5         
+A25      2       2          6          2          6         
+A7       3       3          7          3          7         
+B100     4       4          8          4          8         
+B12      5       5          10         5          10        
+A120     3       3          10         6          14        
+B3       6       6          10         7          11        
+A45      4       4          10         8          15        
+C99      -       6          6          8          8            (not found)
+
+============================================
+c) EFFECT OF INSERTION ORDER ON BST HEIGHT
+============================================
+
+Given order (as in the question)        -> height = 6
+Sorted order (ascending)                -> height = 8  (worst case, skewed)
+Balanced insertion order (median-first)  -> height = 4  (best case, balanced)
+
+--------------------------------------------
+Enter an ID to search (or press Ctrl+D to skip): 
+BST Search Result   : A45 Found (Comparisons: 4)
+Linear Search Result: A45 Found (Comparisons: 8)
+
+--- Performance Verdict ---
+BST Search performed better for this key.
